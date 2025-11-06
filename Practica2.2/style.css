@@ -1,0 +1,118 @@
+@font-face {
+  font-family: 'FuenteDelTitulo'; 
+  src: url('/Practica2.2/fonts/fontTitulo3.ttf') format('truetype'); 
+  font-weight: normal;
+  font-style: normal;
+}
+
+:root {
+    /* Colores */
+    --color-fondo-pagina: gainsboro;
+    --color-texto-principal: #333;
+    --color-fondo-tarjeta-texto: white;
+    --color-fondo-tarjeta-titulo: #e0e0e0;
+    
+    /* Tipografía */
+    /* Fuente principal (de Google Fonts) */
+    --fuente-principal: 'Inter', sans-serif;
+    /* Fuente del título (local, definida arriba) */
+    --fuente-titulo: 'FuenteDelTitulo', cursive;
+
+    /* Tamaños de Fuente */
+    --tamano-fuente-titulo-movil: 3.5rem;
+    --tamano-fuente-titulo-desktop: 4.5rem;
+    --peso-fuente-autor: bold;
+    --altura-linea-texto: 1.6;
+
+    /* Espaciado y Radio */
+    --espacio-base: 1rem;
+    --espacio-padding-tarjeta: 1.5rem;
+
+    /* Transiciones y Efectos */
+    --transicion-hover: filter 0.3s ease;
+    --efecto-hover-imagen: grayscale(100%);
+
+    /* Dimensiones */
+    --ancho-completo: 100%;
+    --alto-completo: 100%;
+    --altura-minima-titulo: 250px;
+    --altura-minima-fila-tablet: 180px;
+    --altura-minima-fila-desktop: 150px;
+    --margen-cero: 0;
+    
+    /* Tamaños de Grid */
+    --columna-grid-movil: 1fr;
+    --columnas-grid-tablet: repeat(3, 1fr);
+    --columnas-grid-desktop: repeat(5, 1fr);
+    --tamano-fila-tablet: minmax(var(--altura-minima-fila-tablet), auto);
+    --tamano-fila-desktop: minmax(var(--altura-minima-fila-desktop), auto);
+}
+
+
+/* --- Estilos Base (Mobile First) --- */
+        
+* {
+    /* Reseteo básico para que los tamaños incluyan padding y borde */
+    box-sizing: border-box;
+}
+
+body {
+    margin: var(--margen-cero);
+    background-color: var(--color-fondo-pagina);
+    font-family: var(--fuente-principal);
+    color: var(--color-texto-principal);
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: var(--columna-grid-movil);
+    gap: var(--espacio-base);
+    padding: var(--espacio-base);
+    width: var(--ancho-completo);
+}
+
+.grid-item {
+    overflow: hidden; /* Para que la imagen no se salga del borde redondeado */
+}
+
+.grid-item img {
+    width: var(--ancho-completo);
+    height: var(--alto-completo);
+    object-fit: cover; /* Asegura que la imagen cubra el espacio sin deformarse */
+    display: block;
+    transition: var(--transicion-hover); 
+}
+
+
+.grid-item:hover img {
+    filter: var(--efecto-hover-imagen);
+    cursor: pointer;
+}
+
+.text-card {
+    background-color: var(--color-fondo-tarjeta-texto);
+    padding: var(--espacio-padding-tarjeta);
+    height: var(--alto-completo);
+    line-height: var(--altura-linea-texto);
+}
+
+.text-card p {
+    margin: var(--margen-cero);
+}
+
+.text-card .author {
+    margin-top: var(--espacio-base);
+    font-weight: var(--peso-fuente-autor);
+}
+
+.title-card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: var(--fuente-titulo);
+    font-size: var(--tamano-fuente-titulo-movil);
+    color: var(--color-texto-principal);
+    min-height: var(--altura-minima-titulo);
+    background-color: var(--color-fondo-tarjeta-titulo); 
+    text-align: center;
+}
